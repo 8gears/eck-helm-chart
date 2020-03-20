@@ -1,0 +1,45 @@
+{{- if .Values.kibana.enabled }}
+apiVersion: kibana.k8s.elastic.co/v1
+kind: Kibana
+metadata:
+  name: kibana
+  labels:
+{{- include "eck-cr.labels" . | nindent 4 }}
+spec:
+  version: {{ .Values.kibana.version }}
+
+  {{- if .Values.kibana.http }}
+  http:
+{{ toYaml .Values.kibana.http | indent 4 }}
+  {{- end }}
+
+ {{- if .Values.kibana.image }}
+  image:
+{{ toYaml .Values.kibana.image | indent 4 }}
+  {{- end }}  
+
+  {{- if .Values.kibana.count }}
+  count:
+{{ toYaml .Values.kibana.count | indent 4 }}
+  {{- end }}
+
+  {{- if .Values.kibana.config }}
+  config:
+{{ toYaml .Values.kibana.config | indent 4 }}
+  {{- end }}
+
+  {{- if .Values.kibana.elasticsearchRef }}
+  elasticsearchRef:
+{{ toYaml .Values.kibana.elasticsearchRef | indent 4 }}
+  {{- end }}
+
+  {{- if .Values.kibana.podTemplate }}
+  podTemplate:
+{{ toYaml .Values.kibana.podTemplate | indent 4 }}
+  {{- end }}  
+
+  {{- if .Values.kibana.secureSettings }}
+  secureSettings:
+{{ toYaml .Values.kibana.secureSettings | indent 4 }}
+  {{- end }}  
+{{- end }}

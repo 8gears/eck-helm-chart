@@ -1,0 +1,15 @@
+helmDefaults:
+  verify: true
+  wait: true
+  atomic: true
+
+repositories:
+  - name: 8gears
+    url: git+https://github.com/8gears/elastic-cloud-on-kubernetes-crd?sparse=1
+releases:
+  - name: "eck"
+    chart: "8gears/eck-crd"
+    namespace: "default"
+  - name: "elasticsearch"
+    chart: "8gears/eck-cr"
+    namespace: "default"

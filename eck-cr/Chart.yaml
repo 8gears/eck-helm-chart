@@ -1,0 +1,7 @@
+apiVersion: v2
+name: eck-cr
+description: A Helm chart for Custom Resources (CR) for Elastic Cloud on Kubernetes (ECK) 
+
+type: application
+version: 1.0.0
+appVersion: 1.0.1

@@ -1,0 +1,7 @@
+apiVersion: v2
+name: eck-crd
+description: Elastic Cloud on Kubernetes (ECK) Helm Chart
+
+type: application
+version: 1.0.0
+appVersion: 1.0.1

@@ -1,0 +1,31 @@
+# Default values for eck-cr.
+# This is a YAML-formatted file.
+elasticsearch:
+  enabled: true
+  name: elasticsearch
+  version: 7.6.1
+  http:
+  image:  
+  nodeSets:
+    name: default
+    count: 1
+    config:
+      node.master: true
+      node.data: true
+      node.ingest: true
+      node.store.allow_mmap: false
+  podDisruptionBudget:
+  secureSettings:
+  updateStrategy:
+kibana:
+  enabled: true
+  version:
+  http:
+  image:
+  count:
+  config:
+  elasticsearchRef:    
+  podTemplate:
+  secureSettings:
+
+

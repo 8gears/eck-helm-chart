@@ -1,0 +1,42 @@
+{{- if .Values.elasticsearch.enabled }}
+apiVersion: elasticsearch.k8s.elastic.co/v1
+kind: Elasticsearch
+
+metadata:
+  name: elasticsearch
+  labels:
+{{- include "eck-cr.labels" . | nindent 4 }}
+spec:
+  version: {{ .Values.elasticsearch.version }}
+
+  {{- if .Values.elasticsearch.http }}
+  http:
+{{ toYaml .Values.elasticsearch.http | indent 4 }}
+  {{- end }}
+
+ {{- if .Values.elasticsearch.image }}
+  image:
+{{ toYaml .Values.elasticsearch.image | indent 4 }}
+  {{- end }}  
+
+  {{- if .Values.elasticsearch.nodeSets }}
+  nodeSets:
+{{ toYaml .Values.elasticsearch.nodeSets | indent 4 }}
+  {{- end }}
+
+  {{- if .Values.elasticsearch.podDisruptionBudget }}
+  podDisruptionBudget:
+{{ toYaml .Values.elasticsearch.podDisruptionBudget | indent 4 }}
+  {{- end }}
+
+  {{- if .Values.elasticsearch.secureSettings }}
+  secureSettings:
+{{ toYaml .Values.elasticsearch.secureSettings | indent 4 }}
+  {{- end }}
+
+  {{- if .Values.elasticsearch.updateStrategy }}
+  updateStrategy:
+{{ toYaml .Values.elasticsearch.updateStrategy | indent 4 }}
+  {{- end }}  
+
+{{- end }}
