@@ -1,17 +1,23 @@
 helmDefaults:
-  verify: true
+  verify: false
   wait: true
   atomic: true
 
 repositories:
   - name: eck-crd
-    url: git+https://github.com/8gears/eck-helm-chart.git@eck-crd?sparse=1
+    url: git+https://github.com/8gears/eck-helm-chart@eck-crd
   - name: eck-cr
-    url: git+https://github.com/8gears/eck-helm-chart.git@eck-cr?sparse=1
+    url: git+https://github.com/8gears/eck-helm-chart@eck-cr
 releases:
   - name: "eck"
     chart: "eck-crd/eck-crd"
     namespace: "default"
   - name: "elasticsearch"
     chart: "eck-cr/eck-cr"
-    namespace: "default"
+    namespace: "elastic-system"
+    values:
+      - kibana:
+          version: 7.6.1
+          count: 1
+          elasticsearchRef:
+            name: elasticsearch
